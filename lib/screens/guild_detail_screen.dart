@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../models/rio_guild.dart';
+import '../services/button_link_raider_io.dart';
 import '../widgets/info_chip.dart';
 
 class GuildDetailScreen extends StatelessWidget {
@@ -11,6 +12,7 @@ class GuildDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    const launcher = ButtonLinkRaiderIo();
 
     return Scaffold(
       appBar: AppBar(title: Text(guild.name)),
@@ -51,6 +53,13 @@ class GuildDetailScreen extends StatelessWidget {
               InfoChip(label: 'Faction', value: guild.faction),
               InfoChip(label: 'Dernier crawl', value: guild.lastCrawledAt),
             ],
+          ),
+          const SizedBox(height: 16),
+          FilledButton.icon(
+            onPressed: () =>
+                launcher.openExternalUrl(context, guild.profileUrl),
+            icon: const Icon(Icons.open_in_new),
+            label: const Text('Ouvrir sur Raider.IO'),
           ),
           const SizedBox(height: 22),
           Text(

@@ -100,7 +100,7 @@ class _GuildsScreenState extends State<GuildsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Guildes raid'),
+        title: const Text('Guildes'),
         actions: [
           IconButton(
             tooltip: 'Actualiser le leaderboard',

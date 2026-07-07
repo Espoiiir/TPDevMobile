@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../models/rio_character.dart';
+import '../services/button_link_raider_io.dart';
 import '../widgets/info_chip.dart';
 import '../widgets/network_icon_box.dart';
 
@@ -12,6 +13,7 @@ class RioCharacterDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    const launcher = ButtonLinkRaiderIo();
 
     return Scaffold(
       appBar: AppBar(title: Text(character.name)),
@@ -70,6 +72,13 @@ class RioCharacterDetailScreen extends StatelessWidget {
               ),
               InfoChip(label: 'Màj', value: character.lastCrawledAt),
             ],
+          ),
+          const SizedBox(height: 16),
+          FilledButton.icon(
+            onPressed: () =>
+                launcher.openExternalUrl(context, character.profileUrl),
+            icon: const Icon(Icons.open_in_new),
+            label: const Text('Ouvrir sur Raider.IO'),
           ),
           const SizedBox(height: 22),
           const _SectionTitle(title: 'Scores Mythic+'),
@@ -195,7 +204,7 @@ class _RaidProgressionTile extends StatelessWidget {
               spacing: 8,
               runSpacing: 8,
               children: [
-                InfoChip(label: 'Resume', value: progression.summary),
+                InfoChip(label: 'Résumé', value: progression.summary),
                 InfoChip(label: 'Normal', value: '${progression.normalKills}'),
                 InfoChip(label: 'Heroic', value: '${progression.heroicKills}'),
                 InfoChip(label: 'Mythic', value: '${progression.mythicKills}'),
@@ -300,6 +309,7 @@ class _RunTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final time = _formatDuration(run.clearTimeMs);
     final par = _formatDuration(run.parTimeMs);
+    const launcher = ButtonLinkRaiderIo();
 
     return Card(
       child: Padding(
@@ -336,6 +346,13 @@ class _RunTile extends StatelessWidget {
                           style: const TextStyle(fontWeight: FontWeight.w900),
                         ),
                       ),
+                      if (run.url.startsWith('https://'))
+                        IconButton(
+                          tooltip: 'Ouvrir le run',
+                          onPressed: () =>
+                              launcher.openExternalUrl(context, run.url),
+                          icon: const Icon(Icons.open_in_new),
+                        ),
                     ],
                   ),
                   const SizedBox(height: 8),
