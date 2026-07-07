@@ -1,6 +1,6 @@
 # TPFinalMobile
 
-Groupe: Evant PERNOT et Julian MORALES
+Groupe: Evan PERNOT et Julian MORALES
 
 URL GIT : https://github.com/Espoiiir/TPDevMobile
 
