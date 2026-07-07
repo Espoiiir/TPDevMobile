@@ -26,7 +26,7 @@ class _AppShellState extends State<AppShell> {
       NavigationDestination(
         icon: Icon(Icons.person_search_outlined),
         selectedIcon: Icon(Icons.person_search),
-        label: 'Recherche',
+        label: 'Personnages',
       ),
     ];
 

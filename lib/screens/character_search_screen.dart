@@ -101,8 +101,7 @@ class _CharacterSearchScreenState extends State<CharacterSearchScreen> {
             const MessageState(
               icon: Icons.person_search_outlined,
               title: 'Profil Raider.IO',
-              message:
-                  'Recherche un personnage par région, royaume et nom.',
+              message: 'Recherche un personnage par région, royaume et nom.',
             ),
         ],
       ),

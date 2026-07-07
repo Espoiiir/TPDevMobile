@@ -111,8 +111,7 @@ class RaiderIoApiService {
       if (decoded is Map && decoded['message'] != null) {
         return decoded['message'].toString();
       }
-    } catch (_) {
-    }
+    } catch (_) {}
     return 'Erreur Raider.IO. Veuillez réessayer.';
   }
 }

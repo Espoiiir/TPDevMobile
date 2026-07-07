@@ -72,7 +72,7 @@ class _GuildsScreenState extends State<GuildsScreen> {
 
     if (realm.isEmpty || name.isEmpty) {
       setState(() {
-        _searchErrorMessage = 'Renseigne un royaume et un nom de guilde.';
+        _searchErrorMessage = 'Renseigne un royaume et le nom de la guilde.';
       });
       return;
     }
@@ -201,7 +201,7 @@ class _GuildSearchPanel extends StatelessWidget {
           children: [
             const _SectionHeader(
               title: 'Recherche',
-              subtitle: 'Région, royaume et nom exact de guilde',
+              subtitle: 'Région, royaume et nom exact de la guilde',
               dense: true,
             ),
             SegmentedButton<String>(
@@ -348,7 +348,11 @@ class _LeaderboardSection extends StatelessWidget {
                 ),
               )
             else
-              Column(children: entries.map(_LeaderboardTile.new).toList()),
+              Column(
+                children: entries
+                    .map((entry) => _LeaderboardTile(entry, region: region))
+                    .toList(),
+              ),
           ],
         ),
       ),
@@ -357,9 +361,10 @@ class _LeaderboardSection extends StatelessWidget {
 }
 
 class _LeaderboardTile extends StatelessWidget {
-  const _LeaderboardTile(this.entry);
+  const _LeaderboardTile(this.entry, {required this.region});
 
   final RioRaidLeaderboardEntry entry;
+  final String region;
 
   @override
   Widget build(BuildContext context) {
@@ -390,7 +395,7 @@ class _LeaderboardTile extends StatelessWidget {
         overflow: TextOverflow.ellipsis,
       ),
       trailing: Text(
-        'R#${entry.regionRank}',
+        region == 'world' ? 'W#${entry.rank}' : 'R#${entry.regionRank}',
         style: const TextStyle(fontWeight: FontWeight.w800),
       ),
     );
